@@ -1,0 +1,22 @@
+{
+    "configuration": {
+        "tresholdAlertingInMinutes": 1,
+        "dateTimeFormat": "%Y-%m-%d %H:%M:%S",        
+        "windowDateTimeFormat": "%H:%M:%S",
+        "windowOpenServiceDateTime": "07:00:00",
+        "windowCloseServiceDateTime": "23:00:00",
+        "trailingDelay": 1.0
+
+    },
+    "file" :
+    {
+        "fileName": "/var/log/postgresql/pgbouncer.log",
+        "logFileDateTimeFormat": "%Y-%m-%d %H:%M:%S.%f",
+        "regexp":
+        {
+            "iterLines": "^(?P<lineLogTime>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}) (?P<linePid>\\d+) LOG (?P<lineType>Stats|C-0x[0-9a-fA-F]+): (?P<lineDetail>.*)$",
+            "iterLinesDetailStats": "^(?P<lineReqBySec>\\d+) req/s, in (?P<lineBytesInBySec>\\d+) b/s, out (?P<lineBytesOutBySec>\\d+) b/s,query (?P<lineReqMicroSec>\\d+) us$",
+            "iterLinesDetailLogin": "^(?P<lineDatabase>\\w+)/(?P<lineUser>\\w+)@(?P<lineIpFrom>\\d{0,3}\\.\\d{0,3}\\.\\d{0,3}\\.\\d{0,3}):(?P<linePortFrom>\\d+) (?P<lineActionType>closing|login) (?:because|attempt): (?:db=(?P<lineDbCx>\\w+) user=(?P<lineUserCx>\\w+) tls=(?P<lineTls>\\w+)|).*$"
+        }
+    }
+}
